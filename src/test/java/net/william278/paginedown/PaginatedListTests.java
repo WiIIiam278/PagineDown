@@ -32,4 +32,42 @@ public class PaginatedListTests {
         ).getTotalPages();
         Assertions.assertEquals(4, pageCount);
     }
+
+    @Test
+    public void testPageJumperButtonsOnLongList() {
+        final PaginatedList longList = PaginatedList.of(generateListData(200, "Item #"),
+                new ListOptions.Builder()
+                        .setItemsPerPage(10)
+                        .setPageJumperPageFormat("%target_page_index%")
+                        .setPageJumperCurrentPageFormat("%current_page%")
+                        .build());
+        Assertions.assertEquals("1|2…19|20", longList.getPageJumperButtons(2));
+        Assertions.assertEquals("1|2…6…19|20", longList.getPageJumperButtons(6));
+        Assertions.assertEquals("1|2…19|20", longList.getPageJumperButtons(20));
+        Assertions.assertEquals("1|2…19|20", longList.getPageJumperButtons(1));
+    }
+
+    @Test
+    public void testPageJumperButtonsOnMediumList() {
+        final PaginatedList mediumList = PaginatedList.of(generateListData(45, "Item #"),
+                new ListOptions.Builder()
+                        .setItemsPerPage(10)
+                        .setPageJumperPageFormat("%target_page_index%")
+                        .setPageJumperCurrentPageFormat("%current_page%")
+                        .build());
+        Assertions.assertEquals("1|2…4|5", mediumList.getPageJumperButtons(1));
+        Assertions.assertEquals("1|2|3|4|5", mediumList.getPageJumperButtons(3));
+        Assertions.assertEquals("1|2…4|5", mediumList.getPageJumperButtons(5));
+    }
+
+    @Test
+    public void testPageJumperButtonsOnShortList() {
+        final PaginatedList shortList = PaginatedList.of(generateListData(20, "Item #"),
+                new ListOptions.Builder()
+                        .setItemsPerPage(10)
+                        .setPageJumperPageFormat("%target_page_index%")
+                        .setPageJumperCurrentPageFormat("%current_page%")
+                        .build());
+        Assertions.assertEquals("1|2", shortList.getPageJumperButtons(2));
+    }
 }

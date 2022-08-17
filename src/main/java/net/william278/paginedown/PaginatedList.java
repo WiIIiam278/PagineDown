@@ -222,26 +222,7 @@ public class PaginatedList {
                             }
                             break;
                         case "page_jump_buttons": {
-                            final StringJoiner pageGroups = new StringJoiner(options.pageJumperGroupSeparator);
-                            StringJoiner pages = new StringJoiner(options.pageJumperPageSeparator);
-
-                            for (int i = 1; i <= getTotalPages(); i++) {
-                                int startCutOff = (page <= 3 ? page - 1 : 3);
-                                int endCutOff = (page > getTotalPages() - 3 ? page + 1 : getTotalPages() - 3);
-                                if (i == startCutOff + 1 || i == endCutOff) {
-                                    pageGroups.add(pages.toString());
-                                    pages = new StringJoiner(options.pageJumperPageSeparator);
-                                }
-                                if ((i <= startCutOff) || (i > endCutOff)) {
-                                    pages.add(formatPageString(formatPageJumper(i), i));
-                                } else if (i == page) {
-                                    pages.add(formatPageString(options.pageJumperCurrentPageFormat, i));
-                                }
-                            }
-                            if (!pages.toString().isBlank()) {
-                                pageGroups.add(pages.toString());
-                            }
-                            convertedFormat.append(pageGroups);
+                            convertedFormat.append(getPageJumperButtons(page));
                             break;
                         }
                     }
@@ -270,6 +251,31 @@ public class PaginatedList {
     private String formatPageJumper(final int page) {
         return formatPageString(options.pageJumperPageFormat.replaceAll("%target_page_index%",
                 Integer.toString(page)), page);
+    }
+
+    @NotNull
+    protected String getPageJumperButtons(final int page) {
+        final StringJoiner pageGroups = new StringJoiner(options.pageJumperGroupSeparator);
+        StringJoiner pages = new StringJoiner(options.pageJumperPageSeparator);
+        int lastPage = 1;
+        for (int i = 1; i <= getTotalPages(); i++) {
+            if (i < 3 || i > getTotalPages() - 2 || page == i) {
+                if (i - lastPage > 1) {
+                    pageGroups.add(pages.toString());
+                    pages = new StringJoiner(options.pageJumperPageSeparator);
+                }
+                if (page == i) {
+                    pages.add(formatPageString(options.pageJumperCurrentPageFormat, i));
+                } else {
+                    pages.add(formatPageString(formatPageJumper(i), i));
+                }
+                lastPage = i;
+            }
+        }
+        if (!pages.toString().isBlank()) {
+            pageGroups.add(pages.toString());
+        }
+        return pageGroups.toString();
     }
 
 }

@@ -24,7 +24,7 @@ public class ListOptions {
     @NotNull
     protected String pageJumperGroupSeparator = "…";
     @NotNull
-    protected String pageJumperCurrentPageFormat = "[%page%](%color%)";
+    protected String pageJumperCurrentPageFormat = "[%current_page%](%color%)";
     @NotNull
     protected String pageJumperPageFormat = "[%target_page_index%](show_text=&7Jump to page %target_page_index% run_command=/%command% %target_page_index%)";
     @NotNull

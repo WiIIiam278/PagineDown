@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1adcdbad-26db-47ae-b8e5-83088ba9f2ff" name="Changes" comment="Fix no builders for page button formats">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="1adcdbad-26db-47ae-b8e5-83088ba9f2ff" name="Changes" comment="Fix lower bounds handling of getNearestValidPage">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/ListOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/ListOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/PaginatedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/PaginatedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/net/william278/paginedown/PaginatedListTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/net/william278/paginedown/PaginatedListTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +56,30 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.PaginatedListTests">
+    <configuration name="PaginatedListTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;net.william278.paginedown.PaginatedListTests&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="PagineDown build" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -76,6 +103,15 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Gradle.PagineDown build" />
+      <item itemvalue="Gradle.PaginatedListTests" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.PaginatedListTests" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -87,6 +123,7 @@
       <updated>1660688177518</updated>
       <workItem from="1660688178768" duration="664000" />
       <workItem from="1660734365241" duration="1564000" />
+      <workItem from="1660746781694" duration="1536000" />
     </task>
     <task id="LOCAL-00001" summary="Make gradlew executable">
       <created>1660688283740</created>
@@ -109,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660735113793</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fix lower bounds handling of getNearestValidPage">
+      <created>1660746908828</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1660746908828</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +175,7 @@
     <MESSAGE value="Make gradlew executable" />
     <MESSAGE value="Fix javadoc encoding and warnings" />
     <MESSAGE value="Fix no builders for page button formats" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix no builders for page button formats" />
+    <MESSAGE value="Fix lower bounds handling of getNearestValidPage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix lower bounds handling of getNearestValidPage" />
   </component>
 </project>
