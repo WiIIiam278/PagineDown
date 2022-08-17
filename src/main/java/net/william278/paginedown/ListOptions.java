@@ -139,6 +139,18 @@ public class ListOptions {
         }
 
         @NotNull
+        public Builder setPreviousButtonFormat(@NotNull String previousButtonFormat) {
+            options.previousButtonFormat = previousButtonFormat;
+            return this;
+        }
+
+        @NotNull
+        public Builder setNextButtonFormat(@NotNull String nextButtonFormat) {
+            options.nextButtonFormat = nextButtonFormat;
+            return this;
+        }
+
+        @NotNull
         public ListOptions build() {
             return options;
         }
