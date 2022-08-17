@@ -4,6 +4,8 @@
 
 PagineDown is a library for generating paginated [MineDown](https://github.com/Phoenix616/MineDown)-formatted chat menu lists.
 
+![](images/list-example-in-game.png)
+
 Requires Java 11+. PagineDown is a library that is intended to be used with MineDown (not standalone) -- your project will need to shade MineDown to use it.
 
 ## Installation
