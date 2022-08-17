@@ -36,4 +36,4 @@ Then, add the dependency in your `<dependencies>` section. Remember to replace `
 JitPack has a [handy guide](https://jitpack.io/#net.william278/PagineDown/#How_to) for how to use the dependency with other build platforms.
 
 ## License
-Annotaml is licensed under Apache-2.0.
+PagineDown is licensed under Apache-2.0.
