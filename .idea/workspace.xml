@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1adcdbad-26db-47ae-b8e5-83088ba9f2ff" name="Changes" comment="v1.0.3 - Add options to customize no. of page jumper buttons" />
+    <list default="true" id="1adcdbad-26db-47ae-b8e5-83088ba9f2ff" name="Changes" comment="Add example image to README" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -119,6 +119,7 @@
       <workItem from="1660734365241" duration="1564000" />
       <workItem from="1660746781694" duration="1569000" />
       <workItem from="1660750313226" duration="296000" />
+      <workItem from="1660751456096" duration="283000" />
     </task>
     <task id="LOCAL-00001" summary="Make gradlew executable">
       <created>1660688283740</created>
@@ -162,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660750541330</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add example image to README">
+      <created>1660751644066</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1660751644066</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,6 +195,7 @@
     <MESSAGE value="Fix lower bounds handling of getNearestValidPage" />
     <MESSAGE value="v1.0.2 - Fix issues with jumper buttons, add tests for them" />
     <MESSAGE value="v1.0.3 - Add options to customize no. of page jumper buttons" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.0.3 - Add options to customize no. of page jumper buttons" />
+    <MESSAGE value="Add example image to README" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add example image to README" />
   </component>
 </project>
