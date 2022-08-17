@@ -84,7 +84,7 @@ public class PaginatedList {
      */
     @NotNull
     public MineDown getNearestValidPage(final int page) {
-        return getPage(Math.max(0, Math.min(getTotalPages(), page)));
+        return getPage(Math.max(1, Math.min(getTotalPages(), page)));
     }
 
     /**
