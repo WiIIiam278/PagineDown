@@ -259,7 +259,7 @@ public class PaginatedList {
         StringJoiner pages = new StringJoiner(options.pageJumperPageSeparator);
         int lastPage = 1;
         for (int i = 1; i <= getTotalPages(); i++) {
-            if (i < 3 || i > getTotalPages() - 2 || page == i) {
+            if (i <= options.pageJumperStartButtons || i > getTotalPages() - options.pageJumperEndButtons || page == i) {
                 if (i - lastPage > 1) {
                     pageGroups.add(pages.toString());
                     pages = new StringJoiner(options.pageJumperPageSeparator);

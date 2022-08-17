@@ -38,6 +38,8 @@ public class PaginatedListTests {
         final PaginatedList longList = PaginatedList.of(generateListData(200, "Item #"),
                 new ListOptions.Builder()
                         .setItemsPerPage(10)
+                        .setPageJumperStartButtons(2)
+                        .setPageJumperEndButtons(2)
                         .setPageJumperPageFormat("%target_page_index%")
                         .setPageJumperCurrentPageFormat("%current_page%")
                         .build());
@@ -52,6 +54,8 @@ public class PaginatedListTests {
         final PaginatedList mediumList = PaginatedList.of(generateListData(45, "Item #"),
                 new ListOptions.Builder()
                         .setItemsPerPage(10)
+                        .setPageJumperStartButtons(2)
+                        .setPageJumperEndButtons(2)
                         .setPageJumperPageFormat("%target_page_index%")
                         .setPageJumperCurrentPageFormat("%current_page%")
                         .build());
@@ -65,6 +69,8 @@ public class PaginatedListTests {
         final PaginatedList shortList = PaginatedList.of(generateListData(20, "Item #"),
                 new ListOptions.Builder()
                         .setItemsPerPage(10)
+                        .setPageJumperStartButtons(2)
+                        .setPageJumperEndButtons(2)
                         .setPageJumperPageFormat("%target_page_index%")
                         .setPageJumperCurrentPageFormat("%current_page%")
                         .build());

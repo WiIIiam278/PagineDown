@@ -40,6 +40,10 @@ public class ListOptions {
     protected String itemSeparator = "\n";
     protected int itemsPerPage = 10;
 
+    protected int pageJumperStartButtons = 3;
+
+    protected int pageJumperEndButtons = 3;
+
     private ListOptions() {
     }
 
@@ -147,6 +151,18 @@ public class ListOptions {
         @NotNull
         public Builder setNextButtonFormat(@NotNull String nextButtonFormat) {
             options.nextButtonFormat = nextButtonFormat;
+            return this;
+        }
+
+        @NotNull
+        public Builder setPageJumperStartButtons(final int pageJumperStartButtons) {
+            options.pageJumperStartButtons = pageJumperStartButtons;
+            return this;
+        }
+
+        @NotNull
+        public Builder setPageJumperEndButtons(final int pageJumperEndButtons) {
+            options.pageJumperEndButtons = pageJumperEndButtons;
             return this;
         }
 

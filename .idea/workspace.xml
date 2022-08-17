@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1adcdbad-26db-47ae-b8e5-83088ba9f2ff" name="Changes" comment="Fix lower bounds handling of getNearestValidPage">
+    <list default="true" id="1adcdbad-26db-47ae-b8e5-83088ba9f2ff" name="Changes" comment="v1.0.2 - Fix issues with jumper buttons, add tests for them">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/ListOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/ListOptions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/PaginatedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/PaginatedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/net/william278/paginedown/PaginatedListTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/net/william278/paginedown/PaginatedListTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +121,8 @@
       <updated>1660688177518</updated>
       <workItem from="1660688178768" duration="664000" />
       <workItem from="1660734365241" duration="1564000" />
-      <workItem from="1660746781694" duration="1536000" />
+      <workItem from="1660746781694" duration="1569000" />
+      <workItem from="1660750313226" duration="99000" />
     </task>
     <task id="LOCAL-00001" summary="Make gradlew executable">
       <created>1660688283740</created>
@@ -153,7 +152,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660746908828</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="v1.0.2 - Fix issues with jumper buttons, add tests for them">
+      <created>1660748344882</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1660748344882</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +182,7 @@
     <MESSAGE value="Fix javadoc encoding and warnings" />
     <MESSAGE value="Fix no builders for page button formats" />
     <MESSAGE value="Fix lower bounds handling of getNearestValidPage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix lower bounds handling of getNearestValidPage" />
+    <MESSAGE value="v1.0.2 - Fix issues with jumper buttons, add tests for them" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.0.2 - Fix issues with jumper buttons, add tests for them" />
   </component>
 </project>
