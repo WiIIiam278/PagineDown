@@ -22,7 +22,7 @@ To use the library on Maven, in your `pom.xml` file, first add the JitPack repos
     </repositories>
 ```
 
-Then, add the dependency in your `<dependencies>` section. Remember to replace `Tag` with the current Annotaml version.
+Then, add the dependency in your `<dependencies>` section. Remember to replace `Tag` with the current PagineDown version.
 ```xml
     <dependency>
         <groupId>net.william278</groupId>
