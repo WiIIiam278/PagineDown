@@ -11,6 +11,8 @@ Requires Java 11+. PagineDown is a library that is intended to be used with Mine
 ## Installation
 PagineDown is available on JitPack. You can browse the Javadocs [here](https://javadoc.jitpack.io/net/william278/PagineDown/latest/javadoc/).
 
+Note that your plugin will also need to shade (or shade a library that includes) [MineDown](https://github.com/Phoenix616/MineDown).
+
 ### Maven
 To use the library on Maven, in your `pom.xml` file, first add the JitPack repository:
 ```xml
