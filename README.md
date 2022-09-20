@@ -6,7 +6,9 @@ PagineDown is a library for generating paginated [MineDown](https://github.com/P
 
 ![](images/list-example-in-game.png)
 
-Requires Java 11+. PagineDown is a library that is intended to be used with MineDown (not standalone) -- your project will need to shade MineDown to use it.
+Requires Java 11+. PagineDown is a library that is intended to be used with MineDown-adventure (not standalone) -- your project will need to shade MineDown-adventure to use it.
+
+PagineDown (v1.1+) runs on the [adventure](https://docs.adventure.kyori.net/) platform, or on platforms with adventure adapters.
 
 ## Installation
 PagineDown is available on JitPack. You can browse the Javadocs [here](https://javadoc.jitpack.io/net/william278/PagineDown/latest/javadoc/).

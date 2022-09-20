@@ -1,7 +1,7 @@
 package net.william278.paginedown;
 
 
-import de.themoep.minedown.MineDown;
+import de.themoep.minedown.adventure.MineDown;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
