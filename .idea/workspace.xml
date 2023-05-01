@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1adcdbad-26db-47ae-b8e5-83088ba9f2ff" name="Changes" comment="Port to MineDown-adventure, run on the Adventure platform">
-      <change afterPath="$PROJECT_DIR$/HEADER" afterDir="false" />
+    <list default="true" id="1adcdbad-26db-47ae-b8e5-83088ba9f2ff" name="Changes" comment="Add license header">
+      <change afterPath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/ListItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/SortOption.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/StringListItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/ListOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/ListOptions.java" afterDir="false" />
@@ -57,6 +59,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -73,27 +76,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/William/IdeaProjects/PagineDown",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/William/IdeaProjects/PagineDown&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\William\IdeaProjects\PagineDown" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.PagineDown [updateLicenses]">
+  <component name="RunManager" selected="Gradle.PaginatedListTests">
     <configuration name="PaginatedListTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -170,8 +173,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.PagineDown [updateLicenses]" />
         <item itemvalue="Gradle.PaginatedListTests" />
+        <item itemvalue="Gradle.PagineDown [updateLicenses]" />
       </list>
     </recent_temporary>
   </component>
@@ -193,7 +196,9 @@
       <workItem from="1663673518837" duration="364000" />
       <workItem from="1663674390006" duration="614000" />
       <workItem from="1663691764514" duration="215000" />
-      <workItem from="1682892261503" duration="407000" />
+      <workItem from="1682892261503" duration="428000" />
+      <workItem from="1682895713181" duration="1834000" />
+      <workItem from="1682944023150" duration="1675000" />
     </task>
     <task id="LOCAL-00001" summary="Make gradlew executable">
       <created>1660688283740</created>
@@ -258,7 +263,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663673808922</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Add license header">
+      <created>1682892686593</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1682892686594</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,6 +298,7 @@
     <MESSAGE value="Add example image to README" />
     <MESSAGE value="Update image" />
     <MESSAGE value="Port to MineDown-adventure, run on the Adventure platform" />
-    <option name="LAST_COMMIT_MESSAGE" value="Port to MineDown-adventure, run on the Adventure platform" />
+    <MESSAGE value="Add license header" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add license header" />
   </component>
 </project>

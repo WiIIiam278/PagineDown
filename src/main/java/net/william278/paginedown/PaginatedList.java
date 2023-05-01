@@ -23,8 +23,7 @@ package net.william278.paginedown;
 import de.themoep.minedown.adventure.MineDown;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-import java.util.StringJoiner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -44,19 +43,19 @@ import java.util.stream.Collectors;
  * @see ListOptions
  */
 @SuppressWarnings("unused")
-public class PaginatedList {
+public class PaginatedList<I extends ListItem> {
 
     /**
      * {@link ListOptions} to be used for generating the list
      */
     @NotNull
-    private final ListOptions options;
+    private final ListOptions<I> options;
 
     /**
      * A list of items to be paginated; can be MineDown formatted
      */
     @NotNull
-    private final List<String> items;
+    private final List<I> items;
 
     /**
      * Private constructor used by {@code #get(List, ListOptions)}
@@ -64,8 +63,8 @@ public class PaginatedList {
      * @param items   a list of items to be paginated
      * @param options {@link ListOptions} to be used for generating list pages
      */
-    private PaginatedList(@NotNull List<String> items, @NotNull ListOptions options) {
-        this.items = items;
+    private PaginatedList(@NotNull Collection<I> items, @NotNull ListOptions<I> options) {
+        this.items = new ArrayList<>(items);
         this.options = options;
     }
 
@@ -75,9 +74,10 @@ public class PaginatedList {
      * @param items The {@link List} of items to paginate
      * @return A new {@link PaginatedList}
      */
+    @SuppressWarnings("unchecked")
     @NotNull
-    public static PaginatedList of(@NotNull List<String> items) {
-        return new PaginatedList(items, new ListOptions.Builder().build());
+    public static <I extends ListItem> PaginatedList<I> of(@NotNull Collection<I> items) {
+        return of(items, ListOptions.builder().build());
     }
 
     /**
@@ -88,8 +88,8 @@ public class PaginatedList {
      * @return A new {@link PaginatedList}
      */
     @NotNull
-    public static PaginatedList of(@NotNull List<String> items, @NotNull ListOptions options) {
-        return new PaginatedList(items, options);
+    public static <I extends ListItem> PaginatedList<I> of(@NotNull Collection<I> items, @NotNull ListOptions<I> options) {
+        return new PaginatedList<>(items, options);
     }
 
 
@@ -102,8 +102,19 @@ public class PaginatedList {
      * @return A {@link MineDown} object, for formatting the list
      */
     @NotNull
+    public MineDown getNearestValidPage(final int page, boolean ascending, @NotNull SortOption<I> option) {
+        return getPage(Math.max(1, Math.min(getTotalPages(), page)), ascending, option);
+    }
+
+    @SuppressWarnings("unchecked")
+    @NotNull
+    public MineDown getNearestValidPage(final int page, boolean ascending) {
+        return getNearestValidPage(page, ascending, (SortOption<I>) SortOption.NAME);
+    }
+
+    @NotNull
     public MineDown getNearestValidPage(final int page) {
-        return getPage(Math.max(1, Math.min(getTotalPages(), page)));
+        return getNearestValidPage(page, true);
     }
 
     /**
@@ -114,8 +125,36 @@ public class PaginatedList {
      * @return A {@link MineDown} object, for formatting the list
      * @throws PaginationException If the page number is out of bounds
      */
+    @NotNull
+    public MineDown getPage(final int page, boolean ascending, @NotNull SortOption<I> option) throws PaginationException {
+        return new MineDown(getRawPage(page, ascending, option));
+    }
+
+    /**
+     * Returns a {@link MineDown} formatted message to be sent to a player of the paginated list for the specified page
+     * <p>List formats and options from the {@link ListOptions} are applied to generate the list.
+     *
+     * @param page The page number to get
+     * @return A {@link MineDown} object, for formatting the list
+     * @throws PaginationException If the page number is out of bounds
+     */
+    @SuppressWarnings("unchecked")
+    @NotNull
+    public MineDown getPage(final int page, boolean ascending) throws PaginationException {
+        return getPage(page, ascending, (SortOption<I>) SortOption.NAME);
+    }
+
+    /**
+     * Returns a {@link MineDown} formatted message to be sent to a player of the paginated list for the specified page
+     * <p>List formats and options from the {@link ListOptions} are applied to generate the list.
+     *
+     * @param page The page number to get
+     * @return A {@link MineDown} object, for formatting the list
+     * @throws PaginationException If the page number is out of bounds
+     */
+    @NotNull
     public MineDown getPage(final int page) throws PaginationException {
-        return new MineDown(getRawPage(page));
+        return getPage(page, true);
     }
 
     /**
@@ -127,7 +166,7 @@ public class PaginatedList {
      * @throws PaginationException If the page number is out of bounds
      */
     @NotNull
-    public String getRawPage(final int page) throws PaginationException {
+    public String getRawPage(final int page, final boolean ascending, final SortOption<I> option) throws PaginationException {
         if (page < 1) {
             throw new PaginationException("Page index must be >= 1");
         }
@@ -143,11 +182,12 @@ public class PaginatedList {
             }
         }
 
+        final List<I> items = option.sort(this.items, ascending);
         if (options.escapeItemsMineDown) {
-            menuJoiner.add(getItemsForPage(page).stream().map(MineDown::escape)
+            menuJoiner.add(getItemsForPage(items, page).stream().map(MineDown::escape)
                     .collect(Collectors.joining(options.itemSeparator)));
         } else {
-            menuJoiner.add(String.join(options.itemSeparator, getItemsForPage(page)));
+            menuJoiner.add(String.join(options.itemSeparator, getItemsForPage(items, page)));
         }
 
         if (!options.footerFormat.isBlank()) {
@@ -157,6 +197,17 @@ public class PaginatedList {
             menuJoiner.add(formatPageString(options.footerFormat, page));
         }
         return menuJoiner.toString();
+    }
+
+    @SuppressWarnings("unchecked")
+    @NotNull
+    public String getRawPage(final int page, final boolean ascending) {
+        return getRawPage(page, ascending, (SortOption<I>) SortOption.NAME);
+    }
+
+    @NotNull
+    public String getRawPage(final int page) {
+        return getRawPage(page, true);
     }
 
     /**
@@ -171,12 +222,15 @@ public class PaginatedList {
     /**
      * Returns the items to be displayed on the specified page
      *
-     * @param page The page number to get
+     * @param items The items to paginate
+     * @param page  The page number to get
      * @return The sub-list of items to be shown on a given page
      */
     @NotNull
-    private List<String> getItemsForPage(final int page) {
-        return items.subList((page - 1) * options.itemsPerPage, Math.min(items.size(), page * options.itemsPerPage));
+    private List<String> getItemsForPage(@NotNull List<I> items, int page) {
+        return items.subList((page - 1) * options.itemsPerPage, Math.min(items.size(), page * options.itemsPerPage))
+                .stream().map(ListItem::toItemString)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -195,54 +249,36 @@ public class PaginatedList {
             if (c == '%') {
                 if (readingPlaceholder) {
                     switch (currentPlaceholder.toString().toLowerCase()) {
-                        case "topic":
-                            convertedFormat.append(formatPageString(options.topic, page));
-                            break;
-                        case "color":
-                            convertedFormat.append(String.format("#%02x%02x%02x", options.themeColor.getRed(), options.themeColor.getGreen(), options.themeColor.getBlue()));
-                            break;
-                        case "first_item_on_page_index":
-                            convertedFormat.append(((page - 1) * options.itemsPerPage) + 1);
-                            break;
-                        case "last_item_on_page_index":
-                            convertedFormat.append(((page - 1) * options.itemsPerPage) + getItemsForPage(page).size());
-                            break;
-                        case "total_items":
-                            convertedFormat.append(items.size());
-                            break;
-                        case "current_page":
-                            convertedFormat.append(page);
-                            break;
-                        case "total_pages":
-                            convertedFormat.append(getTotalPages());
-                            break;
-                        case "previous_page_button":
+                        case "topic" -> convertedFormat.append(formatPageString(options.topic, page));
+                        case "color" ->
+                                convertedFormat.append(String.format("#%02x%02x%02x", options.themeColor.getRed(), options.themeColor.getGreen(), options.themeColor.getBlue()));
+                        case "first_item_on_page_index" ->
+                                convertedFormat.append(((page - 1) * options.itemsPerPage) + 1);
+                        case "last_item_on_page_index" ->
+                                convertedFormat.append(((page - 1) * options.itemsPerPage) + getItemsForPage(items, page).size());
+                        case "total_items" -> convertedFormat.append(items.size());
+                        case "current_page" -> convertedFormat.append(page);
+                        case "total_pages" -> convertedFormat.append(getTotalPages());
+                        case "previous_page_button" -> {
                             if (page > 1) {
                                 convertedFormat.append(formatPageString(options.previousButtonFormat, page));
                             }
-                            break;
-                        case "next_page_button":
+                        }
+                        case "next_page_button" -> {
                             if (page < getTotalPages()) {
                                 convertedFormat.append(formatPageString(options.nextButtonFormat, page));
                             }
-                            break;
-                        case "next_page_index":
-                            convertedFormat.append(page + 1);
-                            break;
-                        case "previous_page_index":
-                            convertedFormat.append(page - 1);
-                            break;
-                        case "command":
-                            convertedFormat.append(options.command);
-                            break;
-                        case "page_jumpers":
+                        }
+                        case "next_page_index" -> convertedFormat.append(page + 1);
+                        case "previous_page_index" -> convertedFormat.append(page - 1);
+                        case "command" -> convertedFormat.append(options.command);
+                        case "page_jumpers" -> {
                             if (getTotalPages() > 2) {
                                 convertedFormat.append(formatPageString(options.pageJumpersFormat, page));
                             }
-                            break;
-                        case "page_jump_buttons": {
+                        }
+                        case "page_jump_buttons" -> {
                             convertedFormat.append(getPageJumperButtons(page));
-                            break;
                         }
                     }
                 } else {

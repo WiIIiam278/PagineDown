@@ -19,7 +19,7 @@
 
 package net.william278.paginedown;
 
-public class PaginationException extends RuntimeException {
+public class PaginationException extends IllegalStateException {
 
     public PaginationException(String message) {
         super(message);

@@ -22,14 +22,16 @@ package net.william278.paginedown;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Options, including placeholder strings, used to generate a {@link PaginatedList} of items
  */
-public class ListOptions {
+public class ListOptions<I extends ListItem> {
 
     @NotNull
-    protected String headerFormat = "[Viewing %topic%](%color%) [(%first_item_on_page_index%-%last_item_on_page_index% of](%color%) [%total_items%](%color% bold)[)](%color%)";
+    protected String headerFormat = "[%topic% (%first_item_on_page_index%-%last_item_on_page_index% of %total_items%):](%color%)";
     @NotNull
     protected String footerFormat = "%previous_page_button%Page [%current_page%](%color%)/[%total_pages%](%color%)%next_page_button%   %page_jumpers%";
     @NotNull
@@ -58,135 +60,142 @@ public class ListOptions {
     @NotNull
     protected String itemSeparator = "\n";
     protected int itemsPerPage = 10;
-
     protected int pageJumperStartButtons = 3;
-
     protected int pageJumperEndButtons = 3;
+    protected List<SortOption<I>> availableSortOptions = new ArrayList<>();
 
     private ListOptions() {
     }
 
+    @NotNull
+    public static Builder builder() {
+        return new Builder<>();
+    }
+
     @SuppressWarnings("unused")
-    public static class Builder {
+    public static class Builder<I extends ListItem> {
         @NotNull
-        private final ListOptions options = new ListOptions();
+        private final ListOptions<I> options = new ListOptions<>();
+
+        protected Builder() {
+        }
 
         @NotNull
-        public Builder setHeaderFormat(@NotNull String headerFormat) {
+        public Builder<I> setHeaderFormat(@NotNull String headerFormat) {
             options.headerFormat = headerFormat;
             return this;
         }
 
         @NotNull
-        public Builder setFooterFormat(@NotNull String footerFormat) {
+        public Builder<I> setFooterFormat(@NotNull String footerFormat) {
             options.footerFormat = footerFormat;
             return this;
         }
 
         @NotNull
-        public Builder setItemSeparator(@NotNull String itemSeparator) {
+        public Builder<I> setItemSeparator(@NotNull String itemSeparator) {
             options.itemSeparator = itemSeparator;
             return this;
         }
 
         @NotNull
-        public Builder setThemeColor(@NotNull Color themeColor) {
+        public Builder<I> setThemeColor(@NotNull Color themeColor) {
             options.themeColor = themeColor;
             return this;
         }
 
         @NotNull
-        public Builder setSpaceAfterHeader(final boolean spaceAfterHeader) {
+        public Builder<I> setSpaceAfterHeader(final boolean spaceAfterHeader) {
             options.spaceAfterHeader = spaceAfterHeader;
             return this;
         }
 
         @NotNull
-        public Builder setSpaceBeforeFooter(final boolean spaceBeforeFooter) {
+        public Builder<I> setSpaceBeforeFooter(final boolean spaceBeforeFooter) {
             options.spaceBeforeFooter = spaceBeforeFooter;
             return this;
         }
 
         @NotNull
-        public Builder setItemsPerPage(final int itemsPerPage) {
+        public Builder<I> setItemsPerPage(final int itemsPerPage) {
             options.itemsPerPage = itemsPerPage;
             return this;
         }
 
         @NotNull
-        public Builder setTopic(@NotNull String topic) {
+        public Builder<I> setTopic(@NotNull String topic) {
             options.topic = topic;
             return this;
         }
 
         @NotNull
-        public Builder setCommand(@NotNull String command) {
+        public Builder<I> setCommand(@NotNull String command) {
             options.command = command;
             return this;
         }
 
         @NotNull
-        public Builder setEscapeItemsMineDown(final boolean escapeItemsMineDown) {
+        public Builder<I> setEscapeItemsMineDown(final boolean escapeItemsMineDown) {
             options.escapeItemsMineDown = escapeItemsMineDown;
             return this;
         }
 
         @NotNull
-        public Builder setPageJumpersFormat(@NotNull String pageJumpersFormat) {
+        public Builder<I> setPageJumpersFormat(@NotNull String pageJumpersFormat) {
             options.pageJumpersFormat = pageJumpersFormat;
             return this;
         }
 
         @NotNull
-        public Builder setPageJumperPageSeparator(@NotNull String pageJumperPageSeparator) {
+        public Builder<I> setPageJumperPageSeparator(@NotNull String pageJumperPageSeparator) {
             options.pageJumperPageSeparator = pageJumperPageSeparator;
             return this;
         }
 
         @NotNull
-        public Builder setPageJumperPageFormat(@NotNull String pageJumperPageFormat) {
+        public Builder<I> setPageJumperPageFormat(@NotNull String pageJumperPageFormat) {
             options.pageJumperPageFormat = pageJumperPageFormat;
             return this;
         }
 
         @NotNull
-        public Builder setPageJumperGroupSeparator(@NotNull String pageJumperGroupSeparator) {
+        public Builder<I> setPageJumperGroupSeparator(@NotNull String pageJumperGroupSeparator) {
             options.pageJumperGroupSeparator = pageJumperGroupSeparator;
             return this;
         }
 
         @NotNull
-        public Builder setPageJumperCurrentPageFormat(@NotNull String pageJumperCurrentPageFormat) {
+        public Builder<I> setPageJumperCurrentPageFormat(@NotNull String pageJumperCurrentPageFormat) {
             options.pageJumperCurrentPageFormat = pageJumperCurrentPageFormat;
             return this;
         }
 
         @NotNull
-        public Builder setPreviousButtonFormat(@NotNull String previousButtonFormat) {
+        public Builder<I> setPreviousButtonFormat(@NotNull String previousButtonFormat) {
             options.previousButtonFormat = previousButtonFormat;
             return this;
         }
 
         @NotNull
-        public Builder setNextButtonFormat(@NotNull String nextButtonFormat) {
+        public Builder<I> setNextButtonFormat(@NotNull String nextButtonFormat) {
             options.nextButtonFormat = nextButtonFormat;
             return this;
         }
 
         @NotNull
-        public Builder setPageJumperStartButtons(final int pageJumperStartButtons) {
+        public Builder<I> setPageJumperStartButtons(final int pageJumperStartButtons) {
             options.pageJumperStartButtons = pageJumperStartButtons;
             return this;
         }
 
         @NotNull
-        public Builder setPageJumperEndButtons(final int pageJumperEndButtons) {
+        public Builder<I> setPageJumperEndButtons(final int pageJumperEndButtons) {
             options.pageJumperEndButtons = pageJumperEndButtons;
             return this;
         }
 
         @NotNull
-        public ListOptions build() {
+        public ListOptions<I> build() {
             return options;
         }
     }
