@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1adcdbad-26db-47ae-b8e5-83088ba9f2ff" name="Changes" comment="Add license header">
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/ListItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/SortOption.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/StringListItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/ListOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/ListOptions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/PaginatedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/PaginatedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/PaginationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/PaginationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/StringListItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/william278/paginedown/StringListItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/net/william278/paginedown/PaginatedListTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/net/william278/paginedown/PaginatedListTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,13 +36,7 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="PagineDown" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="PagineDown" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="other" type="c8890929:TasksNode$1" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
             <select />
@@ -65,6 +54,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">

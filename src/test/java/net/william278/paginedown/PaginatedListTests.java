@@ -25,6 +25,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public class PaginatedListTests {
 
     // Generates a test list of StringListItems
@@ -63,10 +64,10 @@ public class PaginatedListTests {
                         .setPageJumperCurrentPageFormat("%current_page%")
                         .build()
         );
-        Assertions.assertEquals("1|2…19|20", longList.getPageJumperButtons(2));
-        Assertions.assertEquals("1|2…6…19|20", longList.getPageJumperButtons(6));
-        Assertions.assertEquals("1|2…19|20", longList.getPageJumperButtons(20));
-        Assertions.assertEquals("1|2…19|20", longList.getPageJumperButtons(1));
+        Assertions.assertEquals("1|2…19|20", longList.getPageJumperButtons(2, true, (SortOption<StringListItem>) SortOption.NAME));
+        Assertions.assertEquals("1|2…6…19|20", longList.getPageJumperButtons(6, true, (SortOption<StringListItem>) SortOption.NAME));
+        Assertions.assertEquals("1|2…19|20", longList.getPageJumperButtons(20, true, (SortOption<StringListItem>) SortOption.NAME));
+        Assertions.assertEquals("1|2…19|20", longList.getPageJumperButtons(1, true, (SortOption<StringListItem>) SortOption.NAME));
     }
 
     @Test
@@ -81,9 +82,9 @@ public class PaginatedListTests {
                         .setPageJumperCurrentPageFormat("%current_page%")
                         .build()
         );
-        Assertions.assertEquals("1|2…4|5", mediumList.getPageJumperButtons(1));
-        Assertions.assertEquals("1|2|3|4|5", mediumList.getPageJumperButtons(3));
-        Assertions.assertEquals("1|2…4|5", mediumList.getPageJumperButtons(5));
+        Assertions.assertEquals("1|2…4|5", mediumList.getPageJumperButtons(1, true, (SortOption<StringListItem>) SortOption.NAME));
+        Assertions.assertEquals("1|2|3|4|5", mediumList.getPageJumperButtons(3, true, (SortOption<StringListItem>) SortOption.NAME));
+        Assertions.assertEquals("1|2…4|5", mediumList.getPageJumperButtons(5, true, (SortOption<StringListItem>) SortOption.NAME));
     }
 
     @Test
@@ -98,6 +99,6 @@ public class PaginatedListTests {
                         .setPageJumperCurrentPageFormat("%current_page%")
                         .build()
         );
-        Assertions.assertEquals("1|2", shortList.getPageJumperButtons(2));
+        Assertions.assertEquals("1|2", shortList.getPageJumperButtons(2, true, (SortOption<StringListItem>) SortOption.NAME));
     }
 }

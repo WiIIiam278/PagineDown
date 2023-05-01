@@ -2,11 +2,11 @@ package net.william278.paginedown;
 
 import org.jetbrains.annotations.NotNull;
 
-public class StringListItem implements ListItem {
+public final class StringListItem implements ListItem {
 
     private final String item;
 
-    public StringListItem(String item) {
+    public StringListItem(@NotNull String item) {
         this.item = item;
     }
 

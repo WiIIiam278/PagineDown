@@ -176,7 +176,7 @@ public class PaginatedList<I extends ListItem> {
 
         final StringJoiner menuJoiner = new StringJoiner("\n");
         if (!options.headerFormat.isBlank()) {
-            menuJoiner.add(formatPageString(options.headerFormat, page));
+            menuJoiner.add(formatPageString(options.headerFormat, page, ascending, option));
             if (options.spaceAfterHeader) {
                 menuJoiner.add("");
             }
@@ -194,7 +194,7 @@ public class PaginatedList<I extends ListItem> {
             if (options.spaceBeforeFooter) {
                 menuJoiner.add("");
             }
-            menuJoiner.add(formatPageString(options.footerFormat, page));
+            menuJoiner.add(formatPageString(options.footerFormat, page, ascending, option));
         }
         return menuJoiner.toString();
     }
@@ -241,7 +241,7 @@ public class PaginatedList<I extends ListItem> {
      * @return The formatted page string
      */
     @NotNull
-    private String formatPageString(@NotNull String format, int page) {
+    private String formatPageString(@NotNull String format, int page, boolean ascending, @NotNull SortOption<I> option) {
         final StringBuilder convertedFormat = new StringBuilder();
         StringBuilder currentPlaceholder = new StringBuilder();
         boolean readingPlaceholder = false;
@@ -249,7 +249,7 @@ public class PaginatedList<I extends ListItem> {
             if (c == '%') {
                 if (readingPlaceholder) {
                     switch (currentPlaceholder.toString().toLowerCase()) {
-                        case "topic" -> convertedFormat.append(formatPageString(options.topic, page));
+                        case "topic" -> convertedFormat.append(formatPageString(options.topic, page, ascending, option));
                         case "color" ->
                                 convertedFormat.append(String.format("#%02x%02x%02x", options.themeColor.getRed(), options.themeColor.getGreen(), options.themeColor.getBlue()));
                         case "first_item_on_page_index" ->
@@ -261,12 +261,12 @@ public class PaginatedList<I extends ListItem> {
                         case "total_pages" -> convertedFormat.append(getTotalPages());
                         case "previous_page_button" -> {
                             if (page > 1) {
-                                convertedFormat.append(formatPageString(options.previousButtonFormat, page));
+                                convertedFormat.append(formatPageString(options.previousButtonFormat, page, ascending, option));
                             }
                         }
                         case "next_page_button" -> {
                             if (page < getTotalPages()) {
-                                convertedFormat.append(formatPageString(options.nextButtonFormat, page));
+                                convertedFormat.append(formatPageString(options.nextButtonFormat, page, ascending, option));
                             }
                         }
                         case "next_page_index" -> convertedFormat.append(page + 1);
@@ -274,11 +274,11 @@ public class PaginatedList<I extends ListItem> {
                         case "command" -> convertedFormat.append(options.command);
                         case "page_jumpers" -> {
                             if (getTotalPages() > 2) {
-                                convertedFormat.append(formatPageString(options.pageJumpersFormat, page));
+                                convertedFormat.append(formatPageString(options.pageJumpersFormat, page, ascending, option));
                             }
                         }
                         case "page_jump_buttons" -> {
-                            convertedFormat.append(getPageJumperButtons(page));
+                            convertedFormat.append(getPageJumperButtons(page, ascending, option));
                         }
                     }
                 } else {
@@ -303,13 +303,15 @@ public class PaginatedList<I extends ListItem> {
      * @return The formatted page jumper
      */
     @NotNull
-    private String formatPageJumper(final int page) {
-        return formatPageString(options.pageJumperPageFormat.replaceAll("%target_page_index%",
-                Integer.toString(page)), page);
+    private String formatPageJumper(final int page, final boolean ascending, @NotNull SortOption<I> option) {
+        return formatPageString(
+                options.pageJumperPageFormat.replaceAll("%target_page_index%", Integer.toString(page)),
+                page, ascending, option
+        );
     }
 
     @NotNull
-    protected String getPageJumperButtons(final int page) {
+    protected String getPageJumperButtons(final int page, final boolean ascending, @NotNull SortOption<I> option) {
         final StringJoiner pageGroups = new StringJoiner(options.pageJumperGroupSeparator);
         StringJoiner pages = new StringJoiner(options.pageJumperPageSeparator);
         int lastPage = 1;
@@ -320,9 +322,9 @@ public class PaginatedList<I extends ListItem> {
                     pages = new StringJoiner(options.pageJumperPageSeparator);
                 }
                 if (page == i) {
-                    pages.add(formatPageString(options.pageJumperCurrentPageFormat, i));
+                    pages.add(formatPageString(options.pageJumperCurrentPageFormat, i, ascending, option));
                 } else {
-                    pages.add(formatPageString(formatPageJumper(i), i));
+                    pages.add(formatPageString(formatPageJumper(i, ascending, option), i, ascending, option));
                 }
                 lastPage = i;
             }

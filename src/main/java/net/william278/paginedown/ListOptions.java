@@ -31,7 +31,7 @@ import java.util.List;
 public class ListOptions<I extends ListItem> {
 
     @NotNull
-    protected String headerFormat = "[%topic% (%first_item_on_page_index%-%last_item_on_page_index% of %total_items%):](%color%)";
+    protected String headerFormat = "%order_control_button% [%topic% (%first_item_on_page_index%-%last_item_on_page_index% of %total_items%):](%color%) (%filter_buttons%)";
     @NotNull
     protected String footerFormat = "%previous_page_button%Page [%current_page%](%color%)/[%total_pages%](%color%)%next_page_button%   %page_jumpers%";
     @NotNull
@@ -48,6 +48,11 @@ public class ListOptions<I extends ListItem> {
     protected String pageJumperCurrentPageFormat = "[%current_page%](%color%)";
     @NotNull
     protected String pageJumperPageFormat = "[%target_page_index%](show_text=&7Jump to page %target_page_index% run_command=/%command% %target_page_index%)";
+    protected String ascendingSortButtonFormat = "[▲](white show_text=&7Sort items ascendingly run_command=/%command% %target_sort% %current_page%)";
+    protected String descendingSortButtonFormat = "[▼](white show_text=&7Sort items descendingly run_command=/%command% %target_sort% %current_page%)";
+    protected String filterSeparator = "/";
+    protected String filterButtonFormat = "[%filter_name%](show_text=&7Filter by %filter_name% run_command=/%command% %target_filter% %current_page%)";
+    protected String filterButtonActiveFormat = "[%filter_name%](%color% show_text=&7Filter by %filter_name% run_command=/%command% %target_filter% %current_page%)";
     @NotNull
     protected String topic = "List";
     @NotNull
@@ -62,11 +67,15 @@ public class ListOptions<I extends ListItem> {
     protected int itemsPerPage = 10;
     protected int pageJumperStartButtons = 3;
     protected int pageJumperEndButtons = 3;
-    protected List<SortOption<I>> availableSortOptions = new ArrayList<>();
+    @SuppressWarnings("unchecked")
+    protected List<SortOption<I>> availableSortOptions = new ArrayList<>() {{
+        add((SortOption<I>) SortOption.NAME);
+    }};
 
     private ListOptions() {
     }
 
+    @SuppressWarnings("rawtypes")
     @NotNull
     public static Builder builder() {
         return new Builder<>();
