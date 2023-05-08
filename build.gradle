@@ -25,15 +25,22 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.3'
 }
 
-compileJava.options.encoding = 'UTF-8'
-
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
-}
-
 logger.lifecycle("Building PagineDown ${version} by William278")
 version rootProject.version
 archivesBaseName = "${rootProject.name}"
+
+tasks {
+    compileJava {
+        options.encoding = 'UTF-8'
+        options.release.set(11)
+    }
+    jar {
+        manifest {
+            attributes('Automatic-Module-Name': 'net.william278.paginedown')
+        }
+    }
+}
+
 
 license {
     header = rootProject.file('HEADER')
